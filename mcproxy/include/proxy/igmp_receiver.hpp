@@ -28,11 +28,8 @@
 #ifndef IGMP_RECEIVER_HPP
 #define IGMP_RECEIVER_HPP
 
-#include <net/if.h>
-#include <netinet/igmp.h>
-#include <netinet/ip.h>
 
-#include <linux/mroute.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

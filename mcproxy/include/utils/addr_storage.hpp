@@ -23,14 +23,13 @@
 #ifndef ADDR_STORAGE_HPP
 #define ADDR_STORAGE_HPP
 
+
 #include <cstring>
 #include <string>
 #include <stdlib.h>
 #include <iostream>
 
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

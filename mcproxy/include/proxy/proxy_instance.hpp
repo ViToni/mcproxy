@@ -41,7 +41,7 @@
 
 #include <unistd.h>
 
-#include <net/if.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

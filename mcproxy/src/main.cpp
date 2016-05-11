@@ -22,6 +22,8 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "include/os/os.h"
+
 #include "include/hamcast_logging.h"
 
 #include "include/utils/addr_storage.hpp"

@@ -31,9 +31,7 @@
 
 #include <memory>
 
-#include <net/if.h>
-#include <netinet/icmp6.h>
-#include <netinet/ip6.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

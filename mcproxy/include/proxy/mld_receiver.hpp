@@ -29,13 +29,7 @@
 #define MLD_RECEIVER_HPP
 
 
-#include <net/if.h>
-#include <netinet/ip6.h>
-#include <netinet/icmp6.h>
-
-#include <sys/socket.h>
-
-#include <linux/mroute6.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

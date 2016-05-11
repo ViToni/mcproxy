@@ -393,16 +393,21 @@ bool mroute_socket::add_vif(int vifNum, uint32_t if_index, const addr_storage& i
         //VIFF_TUNNEL   /* vif represents a tunnel end-point */
         //VIFF_SRCRT    /* tunnel uses IP src routing */
         //VIFF_REGISTER /* used for PIM Register encap/decap */
+#ifdef __linux__
         unsigned char flags;
         flags = VIFF_USE_IFINDEX;
+#endif
 
         memset(&vc, 0, sizeof(vc));
         vc.vifc_vifi = vifNum;
+#ifdef __linux__
         vc.vifc_flags = flags;
+#endif
         vc.vifc_threshold = MROUTE_TTL_THRESHOLD;
         vc.vifc_rate_limit = MROUTE_RATE_LIMIT_ENDLESS;
+#ifdef __linux__
         vc.vifc_lcl_ifindex = if_index;
-
+#endif
         if (ip_tunnel_remote_addr.is_valid()) {
             vc.vifc_rmt_addr = ip_tunnel_remote_addr.get_in_addr();
         }
@@ -423,8 +428,10 @@ bool mroute_socket::add_vif(int vifNum, uint32_t if_index, const addr_storage& i
         memset(&mc, 0, sizeof(mc));
         mc.mif6c_mifi = vifNum;
         mc.mif6c_flags = flags;
+#ifdef __linux__
         mc.vifc_rate_limit = MROUTE_RATE_LIMIT_ENDLESS;
         mc.vifc_threshold = MROUTE_TTL_THRESHOLD;
+#endif
         mc.mif6c_pifi = if_index;
 
         rc = setsockopt(m_sock, IPPROTO_IPV6, MRT6_ADD_MIF, (void *)&mc, sizeof(mc));

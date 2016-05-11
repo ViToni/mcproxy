@@ -182,6 +182,7 @@ bool mc_socket::bind_udp_socket(const addr_storage& addr, in_port_t port) const
     }
 }
 
+#ifdef __linux__
 bool mc_socket::set_multicast_all(bool enable) const
 {
     HC_LOG_TRACE("");
@@ -219,6 +220,7 @@ bool mc_socket::set_multicast_all(bool enable) const
         return true;
     }
 }
+#endif
 
 bool mc_socket::set_reuse_port(bool enable) const
 {
@@ -625,7 +627,12 @@ bool mc_socket::set_source_filter(uint32_t if_index, const addr_storage& gaddr, 
         slist[i++] = e.get_sockaddr_storage();
     }
 
+#ifdef __linux__
     rc = setsourcefilter(m_sock, if_index, &gaddr.get_sockaddr(), gaddr.get_addr_len(), filter_mode, src_list.size(), slist.get());
+#else
+    sockaddr non_const_sockaddr = gaddr.get_sockaddr();
+    rc = setsourcefilter(m_sock, if_index, &non_const_sockaddr, gaddr.get_addr_len(), filter_mode, src_list.size(), slist.get());
+#endif
     if (rc == -1) {
         HC_LOG_ERROR("failed to set source filter! Error: " << strerror(errno) << " errno: " << errno);
         return false;
@@ -649,7 +656,12 @@ bool mc_socket::get_source_filter(uint32_t if_index, const addr_storage& gaddr, 
     uint32_t old_numsrc = 0;
     uint32_t new_numsrc;
     //get the the number of sources
+#ifdef __linux__
     rc = getsourcefilter(m_sock, if_index, &gaddr.get_sockaddr(), gaddr.get_addr_len(), &filter_mode, &old_numsrc, nullptr);
+#else
+    sockaddr non_const_sockaddr = gaddr.get_sockaddr();
+    rc = getsourcefilter(m_sock, if_index, &non_const_sockaddr, gaddr.get_addr_len(), &filter_mode, &old_numsrc, nullptr);
+#endif
 
     if (rc == -1) {
         HC_LOG_ERROR("failed to get current number of sources! Error: " << strerror(errno) << " errno: " << errno);
@@ -662,7 +674,12 @@ bool mc_socket::get_source_filter(uint32_t if_index, const addr_storage& gaddr, 
     std::unique_ptr<struct sockaddr_storage[]> slist(new struct sockaddr_storage[old_numsrc]);
 
     //get a source list
+#ifdef __linux__
     rc = getsourcefilter(m_sock, if_index, &gaddr.get_sockaddr(), gaddr.get_addr_len(), &filter_mode, &new_numsrc, slist.get());
+#else
+//    sockaddr non_const_sockaddr = gaddr.get_sockaddr();
+    rc = getsourcefilter(m_sock, if_index, &non_const_sockaddr, gaddr.get_addr_len(), &filter_mode, &new_numsrc, slist.get());
+#endif
     if (rc == -1) {
         HC_LOG_ERROR("failed to get source filter! Error: " << strerror(errno) << " errno: " << errno);
         return false;

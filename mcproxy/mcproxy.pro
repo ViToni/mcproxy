@@ -121,7 +121,11 @@ HEADERS += include/hamcast_logging.h \
            include/parser/token.hpp \
            include/parser/configuration.hpp \
            include/parser/parser.hpp \
-           include/parser/interface.hpp
+           include/parser/interface.hpp \
+               #os 
+           include/os/os.h \
+           include/os/os-linux.h \
+           include/os/os-freebsd.h
 
 LIBS += -L/usr/lib -lpthread 
 

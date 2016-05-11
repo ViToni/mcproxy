@@ -28,12 +28,13 @@
 #ifndef CHECK_KERNEL_H
 #define CHECK_KERNEL_H
 
+
 #include <string>
 #include <iostream>
 
 #include <unistd.h>
 
-#include <netinet/in.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

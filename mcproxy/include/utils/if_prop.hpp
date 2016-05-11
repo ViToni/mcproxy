@@ -23,6 +23,7 @@
 #ifndef IF_PROP_NEW_HPP
 #define IF_PROP_NEW_HPP
 
+
 #include <string>
 #include <list>
 #include <map>
@@ -32,8 +33,8 @@
 
 #include <unistd.h>
 
-#include <ifaddrs.h>
-#include <net/if.h>
+#include "include/os/os.h"
+
 #include <ifaddrs.h>
 
 #include "include/hamcast_logging.h"

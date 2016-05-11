@@ -23,11 +23,13 @@
 #ifndef EXTENDED_IGMP_DEFINES_HPP
 #define EXTENDED_IGMP_DEFINES_HPP
 
+
 #include <stdint.h>
 
 #include <sys/types.h>
 
-#include <netinet/igmp.h>
+#include "include/os/os.h"
+
 
 
 #ifndef IGMP_V3_MEMBERSHIP_REPORT

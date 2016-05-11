@@ -48,7 +48,6 @@
 #include "include/proxy/check_kernel.hpp"
 #include "include/proxy/timing.hpp"
 #include "include/proxy/proxy_instance.hpp"
-//#include "include/proxy/proxy_configuration.hpp"
 #include "include/parser/configuration.hpp"
 
 

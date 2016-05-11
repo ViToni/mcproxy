@@ -35,11 +35,7 @@
 #include <iostream>
 #include <memory>
 
-#include <net/if.h>
-#include <netinet/in.h>
-
-#include <linux/mroute.h>
-#include <linux/mroute6.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 

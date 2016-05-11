@@ -34,13 +34,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <arpa/inet.h>
-#include <net/if.h>
-#include <netinet/in.h>
-#include <netpacket/packet.h>
-#include <netdb.h>
-#include <sys/socket.h>
-#include <sys/ioctl.h>
+#include "include/os/os.h"
 
 #include "include/hamcast_logging.h"
 
@@ -172,11 +166,13 @@ public:
      */
     bool set_reuse_port(bool enable) const;
 
+#ifdef __linux__ 
     /**
      * @brief 
      * @return Return true on success.
      */
     bool set_multicast_all(bool enable) const;
+#endif
 
     /**
      * @brief Enable or disable multicast loopback.

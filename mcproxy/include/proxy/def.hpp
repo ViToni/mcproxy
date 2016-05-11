@@ -23,6 +23,7 @@
 #ifndef DEF_HPP
 #define DEF_HPP
 
+
 #include <map>
 #include <set>
 #include <string>
@@ -30,7 +31,7 @@
 #include <chrono>
 #include <sstream>
 
-#include <netinet/in.h>
+#include "include/os/os.h"
 
 
 //------------------------------------------------------------------------
